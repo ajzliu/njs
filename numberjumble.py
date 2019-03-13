@@ -158,7 +158,7 @@ def evaluate(numbers, target):
                     break
             except ZeroDivisionError:
                 continue
-        if time.time()-start > 30:
+        if time.time()-start > 27:
             fout.write(f'Timed out. Ran a total of {counter} calculations in {round(time.time()-start,5)}s')
             fout.close()
             return 0
@@ -199,7 +199,7 @@ def evaluate(numbers, target):
                 '''
             except:
                 continue
-        if time.time()-start > 30:
+        if time.time()-start > 27:
             fout.write(f'Timed out. Ran a total of {counter} calculations in {round(time.time()-start,5)}s')
             fout.close()
             return 0
@@ -238,7 +238,7 @@ def evaluate(numbers, target):
                         break
             except:
                 continue
-        if time.time()-start > 30:
+        if time.time()-start > 27:
             fout.write(f'Timed out. Ran a total of {counter} calculations in {round(time.time()-start,5)}s')
             fout.close()
             return 0
