@@ -27,9 +27,17 @@ def index():
                     margin-left: 15px;
                     text-align: center;
                 }
+                .logout {
+                    position:absolute; 
+                    top:0; 
+                    right:0;
+                }
             </style>
         </header>
         <body>
+            <form action="/logout" class="logout">
+                <input type="submit" value="Log Out">
+            </form>
             <a href="/landing">Enter Number Jumble</a>
             <br/>
             <a href="/submitted">View Solution</a>
@@ -41,16 +49,22 @@ def index():
 def landing():
     if 'username' in session:
         return render_template('landing.html')
-    abort(401)
+    else:
+        abort(401)
 
 @app.route("/evaluate", methods=['POST'])
 def runprocessing():
     if 'username' in session:
         numbers = [int(x) for x in request.form.getlist('n')]
-        target = int(request.form.get('target'))
-        evaluate(numbers, target)
+        ops = [x for x, y in request.form.items() if y == 'on']
+        evaluate(
+            numbers, 
+            int(request.form.get('target')), 
+            float(request.form.get('extcalc')), 
+            ops)
         return redirect(url_for('submitted'))
-    abort(401)
+    else:
+        abort(401)
 
 @app.route("/submitted", methods=['GET'])
 def submitted():
@@ -62,8 +76,13 @@ def submitted():
         resp.headers["Pragma"] = "no-cache"
         resp.headers["Expires"] = "0"
         return resp
-    abort(401)
+    else:
+        abort(401)
 
+@app.route("/logout")
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run()

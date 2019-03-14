@@ -96,7 +96,7 @@ def dstorial(n):
             sum -= x
     return sum
 
-def evaluate(numbers, target):
+def evaluate(numbers, target, extcalc, permitted):
     operations = ["+", "-", "/", "*"]
     opas = ["+", "-"]
     opmd = ["/", "*"]
@@ -105,23 +105,31 @@ def evaluate(numbers, target):
 
     for x in range(len(numbers)):
         n = numbers[x]
-        numbers[x] = {
-                    str(n):n,
-                    "{}!".format(n):ftorial(n),
-                    "{}p!".format(n):ptorial(n),
-                    "{}s!".format(n):storial(n),
-                    "{}p!p!".format(n):ptorial(ptorial(n)),
-                    "{}s!s!".format(n):storial(storial(n)),
-                    "{}p!s!".format(n):storial(ptorial(n)),
-                    "{}s!p!".format(n):ptorial(storial(n)),
-                    "{}!!".format(n):dftorial(n),
-                    "{}p!!".format(n):dptorial(n),
-                    "{}s!!".format(n):dstorial(n)
-                    }
-        if isint(m.sqrt(n)):
+        numbers[x] = {}
+        if 'ori' in permitted:
+            numbers[x][str(n)] = n
+        if 'ftorial' in permitted:
+            numbers[x][f"{n}!"] = ftorial(n)
+        if 'ptorial' in permitted:
+            numbers[x][f"{n}p!"] = ptorial(n)
+        if 'storial' in permitted:
+            numbers[x][f"{n}s!"] = storial(n)
+        if 'ptorialptorial' in permitted:
+            numbers[x][f"{n}p!p!"] = ptorial(ptorial(n))
+        if 'storialstorial' in permitted:
+            numbers[x][f"{n}s!s!"] = storial(storial(n))
+        if 'ptorialstorial' in permitted:
+            numbers[x][f"{n}p!s!"] = storial(ptorial(n))
+        if 'storialptorial' in permitted:
+            numbers[x][f"{n}s!p!"] = ptorial(storial(n))
+        if 'dftorial' in permitted:
+            numbers[x][f"{n}!!"] = dftorial(n)
+        if 'dptorial' in permitted:
+            numbers[x][f"{n}p!!"] = dptorial(n)
+        if 'dstorial' in permitted:
+            numbers[x][f"{n}s!!"] = dstorial(n)
+        if isint(m.sqrt(n)) and 'sqrt' in permitted:
             numbers[x][str(n) + "sqrt"] = m.sqrt(n)
-        if n == 4 or n == 2 or n == 8:
-            numbers[x][str(n) + "blog"] = int(m.log2(n))
         for y in list(numbers[x].items())[::-1]:
             if list(numbers[x].values()).count(y[1]) > 1:
                 del numbers[x][y[0]]
@@ -158,7 +166,7 @@ def evaluate(numbers, target):
                     break
             except ZeroDivisionError:
                 continue
-        if time.time()-start > 27:
+        if time.time()-start > extcalc:
             fout.write(f'Timed out. Ran a total of {counter} calculations in {round(time.time()-start,5)}s')
             fout.close()
             return 0
@@ -199,7 +207,7 @@ def evaluate(numbers, target):
                 '''
             except:
                 continue
-        if time.time()-start > 27:
+        if time.time()-start > extcalc:
             fout.write(f'Timed out. Ran a total of {counter} calculations in {round(time.time()-start,5)}s')
             fout.close()
             return 0
@@ -238,7 +246,7 @@ def evaluate(numbers, target):
                         break
             except:
                 continue
-        if time.time()-start > 27:
+        if time.time()-start > extcalc:
             fout.write(f'Timed out. Ran a total of {counter} calculations in {round(time.time()-start,5)}s')
             fout.close()
             return 0

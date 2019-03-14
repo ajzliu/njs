@@ -12,6 +12,9 @@
         h1 {
             margin-bottom: 0;
         }
+        h5 {
+            margin: 0;
+        }
         p {
             margin-top: 0;
         }
@@ -20,7 +23,7 @@
         }
         label {
             font-size: 3;
-            min-width: 7vw;
+            min-width: 15vw;
             display: inline-block;
         }
         object {
@@ -28,23 +31,78 @@
             width: 50vw;
             height: 50vh;
         }
+        .logout {
+            position:absolute; 
+            top:0; 
+            right:0;
+        }
     </style>
 </header>
 
 <body>
+    <form action="/logout" class="logout">
+        <input type="submit" value="Log Out">
+    </form>
     <h1>Number Jumble Solver</h1>
-    <p>By: Austin Liu<br>Version: 1.5</p>
-    <form action="/evaluate" method="POST">
-        <label for="n1">Numbers:</label>
+    <p>By: Austin Liu<br>Version: 1.8</p>
+    <form action="/evaluate" method="POST" id="njsubmit">
+        <div style="margin: 3vh 0 1vh 0;"></div>
+        <label for="n1" style="min-width: 7vw;">Numbers:</label>
         <input type="number" name="n" id="n1" required="true" class="n">
         <input type="number" name="n" required="true" class="n">
         <input type="number" name="n" required="true" class="n">
         <input type="number" name="n" required="true" class="n">
         <input type="number" name="n" required="true" class="n">
         <br>
-        <label for="target">Target:</label>
+        <label for="target" style="min-width: 7vw;">Target:</label>
         <input type="number" name="target" id="target" required="true">
         <br>
-        <input type="submit" value="Submit">
+        <h4 style="margin: 3vh 0 1vh 0;">Operations</h4>
+        <label for="ori">Original Number</label>
+        <input type="checkbox" name="ori" id="ori" checked>
+        <br>
+        <label for="ftorial">Factorial</label>
+        <input type="checkbox" name="ftorial" id="ftorial" checked>
+        <br>
+        <label for="ptorial">Plustorial</label>
+        <input type="checkbox" name="ptorial" id="ptorial" checked>
+        <br>
+        <label for="storial">Subtorial</label>
+        <input type="checkbox" name="storial" id="storial" checked>
+        <br>
+        <label for="ptorialptorial">Plustorial Plustorial</label>
+        <input type="checkbox" name="ptorialtorial" id="ptorialtorial" checked>
+        <br>
+        <label for="storialstorial">Subtorial Subtorial</label>
+        <input type="checkbox" name="storialstorial" id="storialstorial" checked>
+        <br>
+        <label for="ptorialstorial">Plustorial Subtorial</label>
+        <input type="checkbox" name="ptorialstorial" id="ptorialstorial" checked>
+        <br>
+        <label for="storialptorial">Subtorial Plustorial</label>
+        <input type="checkbox" name="storialptorial" id="storialptorial" checked>
+        <br>
+        <label for="dftorial">Double Factorial</label>
+        <input type="checkbox" name="dftorial" id="dftorial" checked>
+        <br>
+        <label for="dptorial">Double Plustorial</label>
+        <input type="checkbox" name="dptorial" id="dptorial" checked>
+        <br>
+        <label for="dstorial">Double Subtorial</label>
+        <input type="checkbox" name="dstorial" id="dstorial" checked>
+        <br>
+        <label for="sqrt">Square Root<br>(if it is an integer)</label>
+        <input type="checkbox" name="sqrt" id="sqrt" checked>
+        <br>
+        <h4 style="margin: 3vh 0 1vh 0;">Other</h4>
+        <label for="extcalc">Calculation Time Limit (in seconds)</label>
+        <input type="number" name="extcalc" id="extcalc" min="1" max="300" value="27" required>
+        <h5>Note: if above value is greater than or equal to 30 seconds 
+            Heroku will throw an unpleasant time out error, ignore and 
+            see results <a href="./submitted">here</a> when page hangs.</h5>
+        <br>
+        <input type="submit" value="Submit" style="margin: 3vh 0 1vh 0;">
     </form>
+    <script>
+    </script>
 </body>
