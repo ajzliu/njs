@@ -97,6 +97,7 @@ def dstorial(n):
     return sum
 
 def evaluate(numbers, target, extcalc, permitted):
+    print(permitted)
     operations = ["+", "-", "/", "*"]
     opas = ["+", "-"]
     opmd = ["/", "*"]
@@ -169,6 +170,7 @@ def evaluate(numbers, target, extcalc, permitted):
         if time.time()-start > extcalc:
             fout.write(f'Timed out. Ran a total of {counter} calculations in {round(time.time()-start,5)}s')
             fout.close()
+            return
     # (n1 op n2) op (n3 op n4) op n5
     for x in sets:
         for y in op:
@@ -209,6 +211,7 @@ def evaluate(numbers, target, extcalc, permitted):
         if time.time()-start > extcalc:
             fout.write(f'Timed out. Ran a total of {counter} calculations in {round(time.time()-start,5)}s')
             fout.close()
+            return
     # (n1 op n2 op n3) op n4 op n5
     for x in sets:
         for y in op:
@@ -247,6 +250,8 @@ def evaluate(numbers, target, extcalc, permitted):
         if time.time()-start > extcalc:
             fout.write(f'Timed out. Ran a total of {counter} calculations in {round(time.time()-start,5)}s')
             fout.close()
+            return
 
     fout.write(f'Ran a total of {counter} calculations in {round(time.time()-start,5)}s')
     fout.close()
+    return
