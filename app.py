@@ -8,9 +8,10 @@ app.config['SECRET_KEY'] = b'qA9#J[^JAK9&{YATBWVG4&W-|!CF'
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
+        username = request.form.get('username')
         password = request.form.get('password')
-        if password == "youshallnotpass":
-            session['username'] = request.form.get('username')
+        if username == "egan" and password == "eganshowcase2019":
+            session['username'] = username
             return redirect(url_for('landing'))
         else:
             return render_template('index.html', response = "Incorrect Password")
