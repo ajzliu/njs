@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 from flask import (Flask, render_template, redirect, abort, 
                    url_for, request, make_response, session, make_response)
 from numberjumble import evaluate
