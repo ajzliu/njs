@@ -10,7 +10,7 @@ def index():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
-        if username == "egan" and password == "eganshowcase2019":
+        if username == "test" and password == "test":
             session['username'] = username
             return redirect(url_for('landing'))
         else:
