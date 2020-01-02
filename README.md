@@ -25,6 +25,7 @@ Sum of all positive numbers less than or equal than the operand (if the operand 
 Similar to the plustorial operation, but with subtraction.
 
 `5s! = 5 - 4 - 3 - 2 - 1 = -5`
+
 `(-5)s! = -5 - -4 - -3 - -2 - -1 = 5`
 
 ##### Double Factorials
@@ -32,7 +33,9 @@ Similar to the plustorial operation, but with subtraction.
 Similar to regular factorials, but with every other number skipped from the original number.
 
 `5!! = 5 * 3 * 1 = 15`
+
 `8!! = 8 * 6 * 4 * 2 = 384`
+
 `5p!! = 5 + 3 + 1 = 9`
 
 ## Deployment
